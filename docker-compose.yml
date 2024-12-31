@@ -1,0 +1,20 @@
+services:
+  minio:
+    image: docker.arvancloud.ir/minio/minio:RELEASE.2024-08-03T04-33-23Z-cpuv1
+
+    container_name: minio
+    command: server /data --console-address :9001
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: root
+      MINIO_ROOT_PASSWORD: 2wsxdr5#E$
+      MINIO_BROWSER_REDIRECT_URL: http://server_address:9001
+      MINIO_SERVER_URL: http://server_address:9000
+      MINIO_IAM_ENABLED: off
+    volumes:
+      - minio-data:/data
+
+volumes:
+  minio-data:
